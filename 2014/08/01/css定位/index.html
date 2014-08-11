@@ -1,0 +1,219 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>css定位 | Guyingll&#39;s blog</title>
+  <meta name="author" content="guyingll">
+  
+  <meta name="description" content="文档流
+在css中有一个z-index属性，因为网页是“立体的”，它有z轴，这个z轴的大小就由z-index控制。默认情况下，所有页面元素均位于z-index:0这一层，而这一层顺序排列的元素就构成了“文档流”。无论是position还是float，它们都是通过改变文档流来实现定位。
+css有三种基">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta property="og:title" content="css定位"/>
+  <meta property="og:site_name" content="Guyingll&#39;s blog"/>
+
+  
+    <meta property="og:image" content="undefined"/>
+  
+
+  <link href="/favicon.png" rel="icon">
+  <link rel="alternate" href="/atom.xml" title="Guyingll&#39;s blog" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  
+</head>
+
+
+<body>
+  <header id="header" class="inner"><div class="alignleft">
+  <h1><a href="/">Guyingll&#39;s blog</a></h1>
+  <h2><a href="/">Walk steps step by step</a></h2>
+</div>
+<nav id="main-nav" class="alignright">
+  <ul>
+    
+      <li><a href="/">首页</a></li>
+    
+      <li><a href="/archives">存档</a></li>
+    
+      <li><a href="/about">关于</a></li>
+    
+      <li><a href="/todolist">ToDo</a></li>
+    
+  </ul>
+  <div class="clearfix"></div>
+</nav>
+<div class="clearfix"></div></header>
+  <div id="content" class="inner">
+    <div id="main-col" class="alignleft"><div id="wrapper"><article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2014-08-01T08:35:59.000Z"><a href="/2014/08/01/css定位/">8月 1 2014</a></time>
+      
+      
+  
+    <h1 class="title">css定位</h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <h2 id="文档流">文档流</h2>
+<p>在css中有一个z-index属性，因为网页是“立体的”，它有z轴，这个z轴的大小就由z-index控制。默认情况下，所有页面元素均位于z-index:0这一层，而这一层顺序排列的元素就构成了“文档流”。无论是position还是float，它们都是通过改变文档流来实现定位。</p>
+<p>css有三种基本的定位机制：文档流、浮动和绝对定位。除非专门指定，否则所有元素都在文档流中定位。也就是说，文档流中的元素的位置由元素在 X(HTML) 中的位置决定。css定位的基本思想很简单，它允许你使得元素相对于其正常应该出现的位置，或者相对于父元素、另一个元素甚至浏览器窗口本身的位置来进行定位。</p>
+<h3 id="float：">float：</h3>
+<p>float属性定位的元素位于z-index:0层。它是通过float:left和float:right来控制元素在0层左浮或右浮。float会改变正常的文档流排列，影响到周围元素。float元素在文档流中一个挨一个排列。但注意，只是float元素之间一个挨一个排列，对于非float的元素，float元素是视而不见的，会越过它们。</p>
+<p>如下面的一段代码：</p>
+<figure class="highlight <html>"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+</pre></td><td class="code"><pre><span class="tag">&lt;<span class="title">head</span>&gt;</span>
+<span class="tag">&lt;<span class="title">style</span> <span class="attribute">type</span>=<span class="value">"text/css"</span>&gt;</span><span class="css">
+    <span class="class">.fl</span><span class="rules">{<span class="rule"><span class="attribute">float</span>:<span class="value">left</span></span>;<span class="rule"><span class="attribute">background</span>:<span class="value">red</span></span>;<span class="rule"><span class="attribute">border</span>:<span class="value">solid <span class="number">1</span>px <span class="hexcolor">#00f</span></span></span>;<span class="rule">}</span></span>
+    <span class="class">.nfl</span><span class="rules">{<span class="rule"><span class="attribute">background</span>:<span class="value"><span class="hexcolor">#ff0</span></span></span>;<span class="rule"><span class="attribute">border</span>:<span class="value">solid <span class="number">1</span>px <span class="hexcolor">#000</span></span></span>;<span class="rule">}</span></span>
+</span><span class="tag">&lt;/<span class="title">style</span>&gt;</span>
+<span class="tag">&lt;/<span class="title">head</span>&gt;</span>
+<span class="tag">&lt;<span class="title">body</span>&gt;</span>
+    <span class="tag">&lt;<span class="title">span</span> <span class="attribute">class</span>=<span class="value">"fl"</span>&gt;</span>我是float元素1<span class="tag">&lt;/<span class="title">span</span>&gt;</span>
+    <span class="tag">&lt;<span class="title">span</span> <span class="attribute">class</span>=<span class="value">"nfl"</span>&gt;</span>我是非float元素<span class="tag">&lt;/<span class="title">span</span>&gt;</span>
+    <span class="tag">&lt;<span class="title">span</span> <span class="attribute">class</span>=<span class="value">"fl"</span>&gt;</span>我是float元素2<span class="tag">&lt;/<span class="title">span</span>&gt;</span>
+    <span class="tag">&lt;<span class="title">span</span> <span class="attribute">class</span>=<span class="value">"fl"</span>&gt;</span>我是float元素3<span class="tag">&lt;/<span class="title">span</span>&gt;</span>
+<span class="tag">&lt;/<span class="title">body</span>&gt;</span>
+<span class="tag">&lt;/<span class="title">html</span>&gt;</span>
+</pre></td></tr></table></figure>
+
+<p>1、2、3三个元素是float的，它们会越过非float元素一个挨一个排列，把非float元素挤到最后了。</p>
+<p>也就是说 float:left时，会把非float元素挤到所有float元素的右边，float:right时是挤到左边。</p>
+<h3 id="position：">position：</h3>
+<p>osition属性包括下面四个值：</p>
+<ol>
+<li><p>static（默认）<br>元素框正常生成。块级元素生成一个矩形框，作为文档流的一部分，行内元素则会创建一    个或多个行框，置于其父元素中。</p>
+</li>
+<li><p>relative<br>元素框偏移某个距离。元素仍保持其未定位前的框的形状，它原本所占的空间仍保留。</p>
+</li>
+<li><p>absolute<br>元素框从文档流完全删除，并相对于其包含块定位。包含块可能是文档中的另一个元       素或者是初始包含块。元素原先在正常文档流中所占的空间会关闭，就好像元素原来不存    在一样。元素定位后生成一个块级框，而不论原来它在正常流中生成何种类型的框。</p>
+</li>
+<li><p>fixed<br>元素框的表现类似于将 position 设置为 absolute，不过其包含块是视窗本身。</p>
+</li>
+</ol>
+<p>设置absolute或relative会让z-index的值大于0。不同的是，absolute完全脱离文档流，   不再在z-index中保留占位符，而relative虽然自己已浮起来，但仍然会保留自己在z-i    ndex:0中的位置，因此relative在z-index:0层中的相邻元素不会因此受到影响。下面是具  体用法。</p>
+<ol>
+<li><p>静态（static）：<br>元素顺序显示，在一个文档流中，一个挨着一个，但是不像relative那样可以设置top之类的。静态定位仅仅意味着内容遵循正常从上到下的HTML流。</p>
+</li>
+<li><p>相对(relative)：<br>一个相对定位的元素相对它在HTML流中的当前位置而放置。移动一个带有相对定位的元素，在该元素本该放置的地方留下了一个“洞”。相对定位的主要用处不是移动一个元素，而是给行内在它内部的绝对定位的元素设定一个新的参考点。<br>position: relative的元素相对于自己本来应该在的位置进行偏移，偏移后的位置可能覆盖别人（是漂浮在上方）。它原来的位置也空着，因为它会被加入到文档流中。</p>
+</li>
+<li><p>绝对(absolute)：<br>绝对定位让你通过以pixel、em、percentage来指定一个左、右、上或者下的位置来确定一个元素的位置。此外，绝对定位的元素被完全与页面流分离，换句话说，网页上的其他东西甚至不知道这个绝对定位的元素的存在。<br>absolute定位的一般用法：<br>如果一个标签有一个绝对的位置，并且它不在任何其他应用了absolute、relative或者fixed定位的标签里面，那么它是相对于页面（body元素）进行定位的。<br>如果一个标签处在另一个带有absolute、relative或者fixed定位的标签里面，那么它是相对于该元素的边界进行定位的。<br>即，position: absolute的元素在static的父元素中是相对页面（不是浏览器窗口）进行偏移，在非static父元素中（通常是relative，因为如果父元素是absolute，那父元素还要向上找非static祖先元素）是相对父元素进行偏移。<br>绝对定位的框脱离普通流，所以它可以覆盖页面上的其他元素，可以通过设置Ｚ-Iindex属性来控制这些框的堆放次序。</p>
+</li>
+<li><p>固定(fixed)：<br>一个固定的元素被锁定在屏幕的位置上。fixed是相对浏览器窗口的固定位置定位，如网页中的“回到顶部”按钮。</p>
+</li>
+</ol>
+<p>注意：不要试图给同一个样式既应用float属性又应用任何一种定位，除了静态或者相对定位之外。浮动和绝对或者固定定位不可能同时作用在同一个元素上。</p>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+  
+  <div class="tags">
+    <a href="/tags/css/">css</a>
+  </div>
+
+        
+  <div class="addthis addthis_toolbox addthis_default_style">
+    
+      <a class="addthis_button_facebook_like" fb:like:layout="button_count"></a>
+    
+    
+      <a class="addthis_button_tweet"></a>
+    
+    
+      <a class="addthis_button_google_plusone" g:plusone:size="medium"></a>
+    
+    
+      <a class="addthis_button_pinterest_pinit" pi:pinit:layout="horizontal"></a>
+    
+    <a class="addthis_counter addthis_pill_style"></a>
+  </div>
+  <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js"></script>
+
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+<section id="comment">
+  <h1 class="title">留言</h1>
+
+  
+</section>
+
+</div></div>
+    <aside id="sidebar" class="alignright">
+  <div class="search">
+  <form action="//google.com/search" method="get" accept-charset="utf-8">
+    <input type="search" name="q" results="0" placeholder="搜索">
+    <input type="hidden" name="q" value="site:yoursite.com">
+  </form>
+</div>
+
+  
+
+  
+<div class="widget tagcloud">
+  <h3 class="title">标签云</h3>
+  <div class="entry">
+    <a href="/tags/css/" style="font-size: 20.00px;">css</a><a href="/tags/gg/" style="font-size: 10.00px;">gg</a><a href="/tags/jfinal/" style="font-size: 10.00px;">jfinal</a>
+  </div>
+</div>
+
+
+  
+
+  
+</aside>
+    <div class="clearfix"></div>
+  </div>
+  <footer id="footer" class="inner"><div class="alignleft">
+  
+  &copy; 2014 guyingll
+  
+</div>
+<div class="clearfix"></div></footer>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+</body>
+</html>

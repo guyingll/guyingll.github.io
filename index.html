@@ -52,6 +52,67 @@
     <header>
       
         <div class="icon"></div>
+        <time datetime="2014-08-12T06:10:43.000Z"><a href="/2014/08/12/addLoadEvent/">8月 12 2014</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2014/08/12/addLoadEvent/">addLoadEvent</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p>js 在window.onload事件上绑定多个监听器</p>
+<p>onload事件是doc加载完成后浏览器触发的一个事件，单个事件绑定方法如下：</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre>1
+</pre></td><td class="code"><pre><span class="attribute">window.onload</span>=<span class="string">prepareFunction</span>
+</pre></td></tr></table></figure>
+
+<p>如果需要绑定多个的时候，可参考如下进行解决：</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+</pre></td><td class="code"><pre><span class="function"><span class="keyword">function</span> <span class="title">addLoadEvent</span><span class="params">(func)</span>{</span>
+    <span class="keyword">var</span> oldonload=window.onload;
+    <span class="keyword">if</span>(<span class="keyword">typeof</span> window.onload!=<span class="string">'function'</span>){
+        window.onload=func;
+    }<span class="keyword">else</span>{
+        window.onload=<span class="function"><span class="keyword">function</span><span class="params">()</span>{</span>
+            oldonload();
+            func();
+        }
+    }
+}
+</pre></td></tr></table></figure>
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
         <time datetime="2014-08-11T02:52:41.000Z"><a href="/2014/08/11/getElementsByClassName/">8月 11 2014</a></time>
       
       
@@ -395,38 +456,6 @@
 </ol>
 <p>ok,完成</p>
 
-      
-    </div>
-    <footer>
-      
-        
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-
-  <article class="post">
-  
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
-        <time datetime="2014-06-30T09:35:50.000Z"><a href="/2014/06/30/i-have-called-the-police/">6月 30 2014</a></time>
-      
-      
-  
-    <h1 class="title"><a href="/2014/06/30/i-have-called-the-police/">i have called the police</a></h1>
-  
-
-    </header>
-    <div class="entry">
-      
-        
       
     </div>
     <footer>

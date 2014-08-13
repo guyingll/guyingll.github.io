@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   
-  <title>归档：2014/7 | Guyingll&#39;s blog</title>
+  <title>js | Guyingll&#39;s blog</title>
   <meta name="author" content="guyingll">
   
   
@@ -46,24 +46,57 @@
 <div class="clearfix"></div></header>
   <div id="content" class="inner">
     <div id="main-col" class="alignleft"><div id="wrapper">
-<h2 class="archive-title">2014/7</h2>
+<h2 class="archive-title tag">js</h2>
 
 
-  <div class="archive">
-    
-      <article class="post">
-        <div class="post-content">
-          <header>
-            <div class="icon"></div>
-            <time datetime="2014-07-11T09:48:47.000Z"><a href="/2014/07/11/jfinal/">7月 11 2014</a></time>
-            
-              <h1 class="title"><a href="/2014/07/11/jfinal/">jfinal create hello project</a></h1>
-            
-          </header>
-        </div>
-      </article>
-    
+  
+    <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2014-08-13T02:13:04.000Z"><a href="/2014/08/13/insertAfter/">8月 13 2014</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2014/08/13/insertAfter/">insertAfter</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p>dom中拥有方法insertBefore，这个方法将一个新元素插入到一个现有元素的前面调用语法如下：</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre>1
+</pre></td><td class="code"><pre>parentElement<span class="preprocessor">.insertBefore</span>(newElement,targetElement)
+</pre></td></tr></table></figure>
+
+<p>parentElement可以使用targetElement.parentNode获取。</p>
+<p>但如何插入一个现有元素的后面呢？</p>
+<p>实现代码如下：</p>
+<p>```<br>function insertAfter(newElement,targetElement){<br>    var parent=targetElement.parentNode;<br>    if(parent.lastChild===targetElement){<br>        parent.appendChild(newElement);<br>    }else{<br>        parent.insertBefore(newElement,targetElement.nextSibling);<br>    }<br>}</p>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
   </div>
+</article>
+
+
+
+  
+
+  <nav id="pagination">
+  
+  
+  <div class="clearfix"></div>
+</nav>
 </div></div>
     <aside id="sidebar" class="alignright">
   <div class="search">

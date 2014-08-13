@@ -52,6 +52,149 @@
     <header>
       
         <div class="icon"></div>
+        <time datetime="2014-07-11T09:48:47.000Z"><a href="/2014/07/11/jfinal/">7月 11 2014</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2014/07/11/jfinal/">jfinal create hello project</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <h3 id="JFinal_极速开发">JFinal 极速开发</h3>
+<p>JFinal 是基于 Java 语言的极速 WEB + ORM 框架，其核心设计目标是开发迅速、代码量少、学习简单、功能强大、轻量级、易扩展、Restful。 在拥有Java语言所有优势的同时再拥有ruby、python、php等动态语言的开发效率！为您节约更多时间，去陪恋人、家人和朋友 :)</p>
+<p>JFinal有如下主要特点：</p>
+<ol>
+<li>MVC架构，设计精巧，使用简单</li>
+<li>遵循COC原则，零配置，无xml (<strong>惯例优先</strong> Convention over Configuration，CoC)</li>
+<li>独创Db + Record模式，灵活便利</li>
+<li>ActiveRecord支持，使数据库开发极致快速</li>
+<li>自动加载修改后的java文件，开发过程中无需重启web server</li>
+<li>AOP支持，拦截器配置灵活，功能强大</li>
+<li>Plugin体系结构，扩展性强</li>
+<li>多视图支持，支持FreeMarker、JSP、Velocity</li>
+<li>强大的Validator后端校验功能</li>
+<li>功能齐全，拥有struts2的绝大部分功能</li>
+<li>体积小仅248K，且无第三方依赖</li>
+</ol>
+<p>注： 官网地址<a href="http://www.jfinal.com/" title="jfinal" target="_blank" rel="external">jfinal</a></p>
+<p>现做一个demo工程</p>
+<ol>
+<li><p>web.xml中配置如下</p>
+<pre><code> <span class="pi">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span>
+ <span class="tag">&lt;<span class="title">web-app</span> <span class="attribute">xmlns:xsi</span>=<span class="value">"http://www.w3.org/2001/XMLSchema-instance"</span>
+     <span class="attribute">xmlns</span>=<span class="value">"http://java.sun.com/xml/ns/javaee"</span> <span class="attribute">xmlns:web</span>=<span class="value">"http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"</span>
+     <span class="attribute">xsi:schemaLocation</span>=<span class="value">"http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"</span>
+     <span class="attribute">id</span>=<span class="value">"WebApp_ID"</span> <span class="attribute">version</span>=<span class="value">"2.5"</span>&gt;</span>
+     <span class="tag">&lt;<span class="title">display-name</span>&gt;</span>jfinalDemo1<span class="tag">&lt;/<span class="title">display-name</span>&gt;</span>
+     <span class="tag">&lt;<span class="title">filter</span>&gt;</span>
+         <span class="comment">&lt;!--配置filter 相当于strust的FilterDispatcher--&gt;</span>
+         <span class="tag">&lt;<span class="title">filter-name</span>&gt;</span>jfinal<span class="tag">&lt;/<span class="title">filter-name</span>&gt;</span>
+         <span class="tag">&lt;<span class="title">filter-class</span>&gt;</span>com.jfinal.core.JFinalFilter<span class="tag">&lt;/<span class="title">filter-class</span>&gt;</span>
+         <span class="comment">&lt;!--加入配置映射类--&gt;</span>
+         <span class="tag">&lt;<span class="title">init-param</span>&gt;</span>
+             <span class="tag">&lt;<span class="title">param-name</span>&gt;</span>configClass<span class="tag">&lt;/<span class="title">param-name</span>&gt;</span>
+             <span class="tag">&lt;<span class="title">param-value</span>&gt;</span>demo.DemoConfig<span class="tag">&lt;/<span class="title">param-value</span>&gt;</span>
+         <span class="tag">&lt;/<span class="title">init-param</span>&gt;</span>
+     <span class="tag">&lt;/<span class="title">filter</span>&gt;</span>
+     <span class="comment">&lt;!--filter的映射--&gt;</span>
+     <span class="tag">&lt;<span class="title">filter-mapping</span>&gt;</span>
+         <span class="tag">&lt;<span class="title">filter-name</span>&gt;</span>jfinal<span class="tag">&lt;/<span class="title">filter-name</span>&gt;</span>
+         <span class="tag">&lt;<span class="title">url-pattern</span>&gt;</span>/*<span class="tag">&lt;/<span class="title">url-pattern</span>&gt;</span>
+     <span class="tag">&lt;/<span class="title">filter-mapping</span>&gt;</span>
+     <span class="tag">&lt;<span class="title">welcome-file-list</span>&gt;</span>
+         <span class="tag">&lt;<span class="title">welcome-file</span>&gt;</span>index.html<span class="tag">&lt;/<span class="title">welcome-file</span>&gt;</span>
+         <span class="tag">&lt;<span class="title">welcome-file</span>&gt;</span>index.htm<span class="tag">&lt;/<span class="title">welcome-file</span>&gt;</span>
+         <span class="tag">&lt;<span class="title">welcome-file</span>&gt;</span>index.jsp<span class="tag">&lt;/<span class="title">welcome-file</span>&gt;</span>
+         <span class="tag">&lt;<span class="title">welcome-file</span>&gt;</span>default.html<span class="tag">&lt;/<span class="title">welcome-file</span>&gt;</span>
+         <span class="tag">&lt;<span class="title">welcome-file</span>&gt;</span>default.htm<span class="tag">&lt;/<span class="title">welcome-file</span>&gt;</span>
+         <span class="tag">&lt;<span class="title">welcome-file</span>&gt;</span>default.jsp<span class="tag">&lt;/<span class="title">welcome-file</span>&gt;</span>
+     <span class="tag">&lt;/<span class="title">welcome-file-list</span>&gt;</span>
+ <span class="tag">&lt;/<span class="title">web-app</span>&gt;</span>
+</code></pre></li>
+<li><p>建立Democonfig.java文件</p>
+<pre><code> <span class="keyword">package</span> demo;
+
+ <span class="keyword">import</span> com.jfinal.config.Constants;
+ <span class="keyword">import</span> com.jfinal.config.Handlers;
+ <span class="keyword">import</span> com.jfinal.config.Interceptors;
+ <span class="keyword">import</span> com.jfinal.config.JFinalConfig;
+ <span class="keyword">import</span> com.jfinal.config.Plugins;
+ <span class="keyword">import</span> com.jfinal.config.Routes;
+
+ <span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">DemoConfig</span> <span class="keyword">extends</span>  <span class="title">JFinalConfig</span>{</span>
+
+     <span class="annotation">@Override</span>
+     <span class="keyword">public</span> <span class="keyword">void</span> <span class="title">configConstant</span>(Constants me) {
+         <span class="comment">// TODO Auto-generated method stub</span>
+         me.setDevMode(<span class="keyword">true</span>);
+     }
+
+     <span class="annotation">@Override</span>
+     <span class="keyword">public</span> <span class="keyword">void</span> <span class="title">configHandler</span>(Handlers arg0) {
+         <span class="comment">// TODO Auto-generated method stub</span>
+
+     }
+
+     <span class="annotation">@Override</span>
+     <span class="keyword">public</span> <span class="keyword">void</span> <span class="title">configInterceptor</span>(Interceptors arg0) {
+         <span class="comment">// TODO Auto-generated method stub</span>
+
+     }
+
+     <span class="annotation">@Override</span>
+     <span class="keyword">public</span> <span class="keyword">void</span> <span class="title">configPlugin</span>(Plugins arg0) {
+         <span class="comment">// TODO Auto-generated method stub</span>
+
+     }
+
+     <span class="annotation">@Override</span>
+     <span class="keyword">public</span> <span class="keyword">void</span> <span class="title">configRoute</span>(Routes me) {
+         <span class="comment">// TODO Auto-generated method stub</span>
+         me.add(<span class="string">"/hello"</span>,HelloController.class);
+     }
+
+ }
+</code></pre></li>
+</ol>
+<ol>
+<li><p>建立HelloController.java文件</p>
+<pre><code> <span class="keyword">package</span> demo;
+
+ <span class="keyword">import</span> com.jfinal.core.Controller;
+
+ <span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">HelloController</span> <span class="keyword">extends</span> <span class="title">Controller</span> {</span>
+     <span class="keyword">public</span> <span class="keyword">void</span> <span class="title">index</span>() {
+         <span class="comment">// TODO Auto-generated method stub</span>
+         renderText(<span class="string">"hello world!"</span>);
+     }
+ }
+</code></pre></li>
+</ol>
+<p>ok,完成</p>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
         <time datetime="2014-06-30T09:35:50.000Z"><a href="/2014/06/30/i-have-called-the-police/">6月 30 2014</a></time>
       
       
@@ -177,69 +320,13 @@
 
 
 
-  <article class="post">
-  
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
-        <time datetime="2014-06-30T09:02:42.000Z"><a href="/2014/06/30/hello-world/">6月 30 2014</a></time>
-      
-      
-  
-    <h1 class="title"><a href="/2014/06/30/hello-world/">Hello World</a></h1>
-  
-
-    </header>
-    <div class="entry">
-      
-        <p>Welcome to <a href="http://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="http://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="http://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">trobuleshooting</a> or you can ask me on <a href="https://github.com/tommy351/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
-<h2 id="Quick_Start">Quick Start</h2>
-<h3 id="Create_a_new_post">Create a new post</h3>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre>1
-</pre></td><td class="code"><pre>$ hexo new <span class="string">"My New Post"</span>
-</pre></td></tr></table></figure>
-
-<p>More info: <a href="http://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
-<h3 id="Run_server">Run server</h3>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre>1
-</pre></td><td class="code"><pre>$ hexo server
-</pre></td></tr></table></figure>
-
-<p>More info: <a href="http://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
-<h3 id="Generate_static_files">Generate static files</h3>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre>1
-</pre></td><td class="code"><pre>$ hexo generate
-</pre></td></tr></table></figure>
-
-<p>More info: <a href="http://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
-<h3 id="Deploy_to_remote_sites">Deploy to remote sites</h3>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre>1
-</pre></td><td class="code"><pre>$ hexo deploy
-</pre></td></tr></table></figure>
-
-<p>More info: <a href="http://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
-
-      
-    </div>
-    <footer>
-      
-        
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-
 
 <nav id="pagination">
   
     <a href="/" class="alignleft prev">上一页</a>
   
+  
+    <a href="/page/3/" class="alignright next">下一页</a>
   
   <div class="clearfix"></div>
 </nav></div></div>
@@ -257,7 +344,7 @@
 <div class="widget tagcloud">
   <h3 class="title">标签云</h3>
   <div class="entry">
-    <a href="/tags/css/" style="font-size: 20.00px;">css</a><a href="/tags/gg/" style="font-size: 10.00px;">gg</a><a href="/tags/jfinal/" style="font-size: 10.00px;">jfinal</a>
+    <a href="/tags/css/" style="font-size: 20.00px;">css</a><a href="/tags/gg/" style="font-size: 10.00px;">gg</a><a href="/tags/jfinal/" style="font-size: 10.00px;">jfinal</a><a href="/tags/js/" style="font-size: 10.00px;">js</a>
   </div>
 </div>
 
